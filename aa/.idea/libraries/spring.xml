@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="spring">
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/Repository/spring" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$MAVEN_REPOSITORY$/Repository/spring" />
+    </SOURCES>
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/Repository/spring" recursive="false" />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/Repository/spring" recursive="false" type="SOURCES" />
+  </library>
+</component>

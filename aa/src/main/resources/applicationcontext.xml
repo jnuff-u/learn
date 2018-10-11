@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+ <context:component-scan base-package="com.demon.democore"/>
+ <!--<context:annotation-config/>-->
+
+ <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+  <!--ref指向下面bean id=dataSource-->
+  <property name="dataSource" ref="dataSource"></property>
+ </bean>
+
+ <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+  <property name="url" value="jdbc:mysql://localhost:3306/jnshu"/>
+  <property name="username" value="root"/>
+  <property name="password" value="root"/>
+ </bean>
+
+ <bean id="User" class="com.demon.democore.user.User">
+  <!--name='com.demomo.userdao'是User类里面的 userdao变量     ref = 'userDao' 是指向下面的id为userDao的bean -->
+  <property name="userdao" ref="userDao"></property>
+ </bean>
+
+ <bean id="userDao" class="com.demon.democore.userdaoimpl.UserDaoImpl">
+  <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+ </bean>
+
+<bean id="userConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+ <property name="locations">
+  <list>
+  <value>proper.properties</value>
+  </list>
+ </property>
+</bean>
+
+ <bean id="proper" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+  <property name="properties" ref="userConfig"/>
+ </bean>
+
+
+
+</beans>

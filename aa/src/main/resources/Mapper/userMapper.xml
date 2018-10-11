@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--spring是通过识别mapper.xml中的 <mapper namespace="com.fan.mapper.UserDao"> namespace的值来确定对应的Mapper.class的。-->
+<!--<mapper namespace="com.java.modell.User">-->
+<mapper namespace="com.demon.democore.userdao.UserDao">
+
+    <!--<select id="selectById" parameterType="com.java.model.User" resultMap="usermap">-->
+    <select id="selectById" parameterType="int" resultType="User">
+        SELECT * FROM jnshu_user WHERE id = #{id}
+    </select>
+    <!--<resultMap type="com.demomo.user" id="usermap">-->
+    <resultMap type="User" id="usermap">
+        <result column="id" property="id"/>
+        <result column="create_at"  property="create_at"/>
+        <result column="update_at"  property="update_at"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="sex"  property="sex"/>
+        <result column="pro" property="pro"/>
+        <result column="brother"  property="brother"/>
+    </resultMap>
+
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true"  keyProperty="id">
+        INSERT INTO jnshu_user(create_at,update_at,name,age,sex,pro,brother) values (#{create_at},#{update_at},#{name},#{age},#{sex},#{pro},#{brother})
+    </insert>
+    <update id="updateUser" parameterType="User" >
+        Update jnshu_ser SET name=#{name},age=#{age},six=#{six},pro=#{pro},brother=#{brother} WHEN id=#{id}
+    </update>
+
+    <!--resultType="int"返回的一个值类型 复杂对象用resultMap-->
+    <delete id="delectUser" parameterType="int" >
+        DELECT FROM jnshu_user WHERE id=#{id}
+    </delete>
+    <!--<select id="findAllUSer" parameterType="model.com.demomo.user" resultMap="allUserList ">-->
+    <!--SELECT * FROM jnshu_user-->
+    <!--</select>-->
+
+</mapper>
